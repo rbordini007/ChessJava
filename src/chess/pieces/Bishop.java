@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package chess.pieces;
 
 import boardgame.Board;
@@ -10,19 +5,15 @@ import boardgame.Position;
 import chess.ChessPiece;
 import chess.Color;
 
-/**
- *
- * @author rbord
- */
-public class Rook extends ChessPiece {
+public class Bishop extends ChessPiece {
 
-    public Rook(Color color, Board board) {
+    public Bishop(Color color, Board board) {
         super(color, board);
     }
 
     @Override
     public String toString() {
-        return "T";
+        return "B";
     }
 
     @Override
@@ -31,41 +22,41 @@ public class Rook extends ChessPiece {
 
         Position p = new Position(0, 0);
 
-        //Acima
-        p.setValues(position.getRow() - 1, position.getColumn());
+        //diagonal Noroeste
+        p.setValues(position.getRow() - 1, position.getColumn() - 1);
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
-            p.setRow(p.getRow() - 1);
+            p.setValues(p.getRow() - 1, p.getColumn() - 1);
         }
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
-        //esquerda
-        p.setValues(position.getRow(), position.getColumn() - 1);
+        //diagonal nordeste ne
+        p.setValues(position.getRow() - 1, position.getColumn() + 1);
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
-            p.setColumn(p.getColumn() - 1);
+            p.setValues(p.getRow() - 1, p.getColumn() + 1);
         }
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
-        //direita
-        p.setValues(position.getRow(), position.getColumn() + 1);
+        //diagonal suldeste se
+        p.setValues(position.getRow() + 1, position.getColumn() + 1);
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
-            p.setColumn(p.getColumn() + 1);
+            p.setValues(p.getRow() + 1, p.getColumn() + 1);
         }
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
-        //abaixo
-        p.setValues(position.getRow() + 1, position.getColumn());
+        //diagonal suldoeste sw
+        p.setValues(position.getRow() + 1, position.getColumn() - 1);
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
-            p.setRow(p.getRow() + 1);
+            p.setValues(p.getRow() + 1, p.getColumn() - 1);
         }
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
